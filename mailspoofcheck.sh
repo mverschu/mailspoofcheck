@@ -23,6 +23,9 @@ fi
 if dig TXT _dmarc.$1 +short | grep -q 'none'; then
 	printf "${RED}DMARC is not configured secure using none, spoofed emails will be delivered to inbox folder!\n${NC}"
 fi
+if [[ $(dig TXT _dmarc.$1 +short | wc -c) -eq 0 ]]; then
+	printf "${RED}DMARC is not configured!, spoofed emails will be delivered to inbox folder!\n${NC}"
+fi
 printf "\n"
 printf "${BWhite}DKIM:\n${NC}"
 printf "${RED}View mail source on received mail from customer and search for: dkim=\n${NC}"
