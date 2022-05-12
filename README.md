@@ -1,5 +1,5 @@
 # mailspoofcheck
-A simple bash tool to enumerate DNS records.
+A simple bash script to check if a domain is susceptible to mail spoofing.
 
 <h4>Install</h4>
 Download the file make it executable and run.
