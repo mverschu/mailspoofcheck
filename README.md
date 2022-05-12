@@ -5,6 +5,6 @@ A simple bash tool to enumerate DNS records.
 Download the file make it executable and run.
 
     chmod +x ./mailspoofcheck.sh
-Command:
+Usage:
 
     ./mailspoofcheck.sh domainname.com
