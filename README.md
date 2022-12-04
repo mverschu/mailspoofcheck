@@ -1,8 +1,17 @@
 # mailspoofcheck
-A simple bash script to check if a domain is susceptible to mail spoofing.
+This script checks for the presence and configuration of SPF, DMARC, and DKIM records for a given domain.
 
-* Make sure you have dig installed. If you don't have dig, you can install it by running sudo apt-get install dnsutils (for Ubuntu) or brew install bind-tools (for MacOS)
-* Save the script and make it executable by running chmod +x script-name.sh
-* Run the script by typing ./script-name.sh followed by the domain you want to check. For example, to check google.com, you would run ./script-name.sh google.com.
+## Usage
+To run the script, first make sure it is executable by running **chmod +x mailspoofcheck.sh**. Then, run the script with the domain name as the argument, like this:
 
-The script will output the SPF and DMARC records for the domain you specified, and provide information about the security of the DMARC configuration. It will also provide instructions on how to view the DKIM record for the domain.
+```bash
+./mailspoofcheck example.com
+```
+
+## Output
+
+The script will output the SPF, DMARC, and DKIM records for the given domain, as well as any additional information about the configuration of these records.
+
+## Dependencies
+
+This script requires the **dig** command to be installed. **dig** is part of the **dnsutils** package on Ubuntu and Debian, and can be installed with **apt-get install dnsutils**. On other systems, check with your package manager to see if **dig** is available.
