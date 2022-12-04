@@ -34,4 +34,24 @@ printf "\n"
 
 # Print DKIM info
 printf "${BWhite}DKIM:\n${NC}"
-printf "${RED}View mail source on received mail from customer and search for: dkim=\n${NC}"
+
+# Check for DKIM record
+if dig TXT $1 +short | grep -q 'dkim'; then
+  printf "${GREEN}DKIM record exists for $1\n${NC}"
+
+  # Check for popular selectors
+  popular_selectors=("google" "mailgun" "zoho" "sendgrid" "salesforce")
+  for selector in "${popular_selectors[@]}"; do
+    printf "Checking for selector $selector..."
+
+    # Check if selector matches DKIM record
+    if dig TXT $selector._domainkey.$1 +short | grep -q 'dkim'; then
+      printf "${GREEN}match\n${NC}"
+    else
+      printf "${RED}no match\n${NC}"
+    fi
+  done
+else
+  printf "${RED}No DKIM record found for $1.\n"
+  printf "${RED}To view the DKIM record, view the mail source of a received email from $1 and search for 'dkim='\n${NC}"
+fi
